@@ -8,6 +8,21 @@ using Microsoft.Extensions.Hosting;
 
 namespace LearningProject
 {
+    abstract class MyClass
+    {
+        public override string ToString() => Print();
+
+        public abstract string Print();
+    }
+
+    class MyClassB : MyClass
+    {
+        public override void Print()
+        {
+            
+        }
+    }
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

@@ -1,0 +1,5 @@
+C:\MyFolder\LearningProject\TestingOCR\bin\Debug\netcoreapp3.1\TestingOCR.deps.json
+C:\MyFolder\LearningProject\TestingOCR\bin\Debug\netcoreapp3.1\TestingOCR.dll
+C:\MyFolder\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.csprojAssemblyReference.cache
+C:\MyFolder\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.AssemblyInfoInputs.cache
+C:\MyFolder\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.AssemblyInfo.cs
