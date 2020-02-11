@@ -1,28 +1,15 @@
+using LearningProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace LearningProject
 {
-    abstract class MyClass
-    {
-        public override string ToString() => Print();
-
-        public abstract string Print();
-    }
-
-    class MyClassB : MyClass
-    {
-        public override void Print()
-        {
-            
-        }
-    }
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -43,6 +30,11 @@ namespace LearningProject
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            var connectionString = "Host=0.0.0.0:5432;Database=MemeSearch;Username=postgres;Password=1234";
+
+            services.AddDbContext<DataContext>(options =>
+                options.UseNpgsql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
