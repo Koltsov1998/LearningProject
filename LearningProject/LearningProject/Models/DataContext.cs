@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace LearningProject.Models
 {
@@ -11,5 +7,7 @@ namespace LearningProject.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<VkPost> VkPosts { set; get; }
+
+        public DbSet<VkPublic> VkPublics { set; get; }
     }
 }

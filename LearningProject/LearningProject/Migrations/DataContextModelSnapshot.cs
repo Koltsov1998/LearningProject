@@ -28,9 +28,38 @@ namespace LearningProject.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("text");
 
+                    b.Property<int>("VkPublicId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("VkPublicId");
+
                     b.ToTable("VkPosts");
+                });
+
+            modelBuilder.Entity("LearningProject.Models.VkPublic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VkPublics");
+                });
+
+            modelBuilder.Entity("LearningProject.Models.VkPost", b =>
+                {
+                    b.HasOne("LearningProject.Models.VkPublic", "VkPublic")
+                        .WithMany("Posts")
+                        .HasForeignKey("VkPublicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
