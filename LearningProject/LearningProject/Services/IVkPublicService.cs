@@ -8,6 +8,6 @@ namespace LearningProject.Services
 {
     public interface IVkPublicService
     {
-        public IEnumerable<VkPublicContract> GetAllVkPublics();
+        IEnumerable<VkPublicContract> GetAllVkPublics();
     }
 }

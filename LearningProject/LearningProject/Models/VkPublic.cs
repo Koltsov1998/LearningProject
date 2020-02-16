@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LearningProject.Models
 {
@@ -7,5 +8,7 @@ namespace LearningProject.Models
         [Key] public int Id { get; set; }
 
         public string Uri { get; set; }
+
+        public ICollection<VkPost> Posts { get; set; }
     }
 }

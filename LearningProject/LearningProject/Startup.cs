@@ -1,4 +1,5 @@
 using LearningProject.Models;
+using LearningProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,10 +32,12 @@ namespace LearningProject
                 configuration.RootPath = "ClientApp/build";
             });
 
-            var connectionString = "Host=0.0.0.0:5432;Database=MemeSearch;Username=postgres;Password=1234";
+            var connectionString = "Host=localhost;Database=MemeSearch;Username=postgres;Password=1234";
 
             services.AddDbContext<DataContext>(options =>
                 options.UseNpgsql(connectionString));
+
+            services.AddScoped<IVkPublicService, VkPublicService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

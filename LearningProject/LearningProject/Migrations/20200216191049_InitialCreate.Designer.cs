@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LearningProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200213093039_AddedVkPublics")]
-    partial class AddedVkPublics
+    [Migration("20200216191049_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace LearningProject.Migrations
             modelBuilder.Entity("LearningProject.Models.VkPost", b =>
                 {
                     b.HasOne("LearningProject.Models.VkPublic", "VkPublic")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("VkPublicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

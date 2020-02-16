@@ -56,7 +56,7 @@ namespace LearningProject.Migrations
             modelBuilder.Entity("LearningProject.Models.VkPost", b =>
                 {
                     b.HasOne("LearningProject.Models.VkPublic", "VkPublic")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("VkPublicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
