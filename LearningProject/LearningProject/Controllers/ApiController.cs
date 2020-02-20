@@ -21,5 +21,13 @@ namespace LearningProject.Controllers
             var publics = _vkPublicService.GetAllVkPublics();
             return Ok(publics);
         }
+
+        [HttpPost]
+        [Route("~/api/publics")]
+        public IActionResult AddVkPublic([FromQuery] string PublicUrl)
+        {
+            _vkPublicService.AddVkPublic(PublicUrl);
+            return Ok();
+        }
     }
 }

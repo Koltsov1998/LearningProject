@@ -1,28 +1,75 @@
 import React, { Component } from 'react';
 export class Publics extends Component {
+    constructor(props) {
+        super(props);
+        this.state = 
+        {
+            publics: [],
+            publicUrl: ''   
+        }
 
-    componentDidMount(){
-        
-        fetch("localhost:5000/api/publics/getPublics").then(result => console.log(result));
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }    
+
+    
+
+    async componentDidMount() {
+        var response = await fetch("api/publics");
+        var pubs = await response.json()
+        this.setState({
+            publics: pubs
+        })
     }
 
-    render () {
-        const publics = [
-            {
-                url: "vk.com",
-                postParsed: 11
-            },
-            {
-                url: "vk.com",
-                postParsed: 11
-            },
-            {
-                url: "vk.com",
-                postParsed: 11
-            }
-        ]
+    handleChange(event) {
+        this.setState({publicUrl: event.target.value});
+      }
+
+      handleSubmit(){
+        fetch(`api/publics?PublicUrl=${this.state.publicUrl}`, {
+            method: 'POST'
+          }).then(async () => {
+            var response = await fetch("api/publics");
+            var pubs = await response.json()
+            this.setState({
+                publics: pubs
+            })
+          });
+
+
+      }
+
+    render() {
+
         return (
-        publics.map((p) => <div>{p.postParsed}, <a href = {p.url} >{p.url}</a></div>)
+            <div>
+                <div>
+                    <div>
+                        Список пабликов
+                    </div>
+                    <div>
+                        <input type="text" value={this.state.publicUrl} onChange={this.handleChange} />
+                        <button onClick={this.handleSubmit}>
+                            Добавить
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <table>
+                        {this.state.publics.map((p) => 
+                            <tr>
+                                <td>
+                                    <a href={p.uri} >{p.uri}</a> 
+                                </td>
+                                <td>
+                                    {p.postsParsed}
+                                </td>
+                            </tr>
+                        )}
+                    </table>
+                </div>
+            </div>
         );
     }
 }

@@ -25,5 +25,15 @@ namespace LearningProject.Services
                     PostsParsed = p.Posts.Count()
                 }).ToArray();
         }
+
+        public void AddVkPublic(string url)
+        {
+            _context.VkPublics.Add(new VkPublic
+            {
+                Uri = url,
+            });
+
+            _context.SaveChanges();
+        }
     }
 }

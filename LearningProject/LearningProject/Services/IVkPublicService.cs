@@ -9,5 +9,7 @@ namespace LearningProject.Services
     public interface IVkPublicService
     {
         IEnumerable<VkPublicContract> GetAllVkPublics();
+
+        void AddVkPublic(string url);
     }
 }
