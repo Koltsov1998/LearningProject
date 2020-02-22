@@ -29,5 +29,13 @@ namespace LearningProject.Controllers
             _vkPublicService.AddVkPublic(PublicUrl);
             return Ok();
         }
+
+        [HttpDelete]
+        [Route("~/api/publics")]
+        public IActionResult RemovePublic([FromBody] string publicUrl)
+        {
+            _vkPublicService.RemovePublic(publicUrl); 
+            return Ok();
+        }
     }
 }
