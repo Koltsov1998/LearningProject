@@ -14,13 +14,8 @@ export class Publics extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-
     async componentDidMount() {
-        var pubs = await Api.GetAllPublicsAsync();
-        this.setState({
-            publics: pubs
-        })
+        this.populatePublics()  
     }
 
     handleChange(event) {
@@ -29,11 +24,21 @@ export class Publics extends Component {
 
     handleSubmit() {
         Api.AddPublicAsync(this.state.publicUrl).then(async () => {
-            var pubs = await Api.GetAllPublicsAsync();
+            this.populatePublics()
+        });
+    }
+
+    async populatePublics() {
+        var pubs = await Api.GetAllPublicsAsync();
             this.setState({
                 publics: pubs
             })
-        });
+    }
+
+    handleRemove = publicUrl => () => {
+        Api.RemovePublic(publicUrl).then(
+            this.populatePublics()
+        )
     }
 
     render() {
@@ -60,6 +65,13 @@ export class Publics extends Component {
                                 </td>
                                 <td>
                                     {p.postsParsed}
+                                </td>
+                                <td>
+                                    <div>
+                                        <button onClick={this.handleRemove(p.uri)}>
+                                            Удалить
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         )}

@@ -9,4 +9,15 @@ export default class Api {
             method: 'POST'
         });
     }
+
+    static async RemovePublic(publicUrl){
+        return await fetch('api/publics', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: `"${publicUrl}"`
+        }
+        )
+    }
 }
