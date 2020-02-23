@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MyFolder\\LearningProject\\TextRecognition\\TextRecognition.csproj": {}
+    "C:\\MyFolder\\LearningProject\\LearningProject\\TextRecognition\\TextRecognition.csproj": {}
   },
   "projects": {
-    "C:\\MyFolder\\LearningProject\\TextRecognition\\TextRecognition.csproj": {
+    "C:\\MyFolder\\LearningProject\\LearningProject\\TextRecognition\\TextRecognition.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MyFolder\\LearningProject\\TextRecognition\\TextRecognition.csproj",
+        "projectUniqueName": "C:\\MyFolder\\LearningProject\\LearningProject\\TextRecognition\\TextRecognition.csproj",
         "projectName": "TextRecognition",
-        "projectPath": "C:\\MyFolder\\LearningProject\\TextRecognition\\TextRecognition.csproj",
-        "packagesPath": "C:\\Users\\Fiddl\\.nuget\\packages\\",
-        "outputPath": "C:\\MyFolder\\LearningProject\\TextRecognition\\obj\\",
+        "projectPath": "C:\\MyFolder\\LearningProject\\LearningProject\\TextRecognition\\TextRecognition.csproj",
+        "packagesPath": "C:\\NuGet\\packages",
+        "outputPath": "C:\\MyFolder\\LearningProject\\LearningProject\\TextRecognition\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Fiddl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Семен Кольцов\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

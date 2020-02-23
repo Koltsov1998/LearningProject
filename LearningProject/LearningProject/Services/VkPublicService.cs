@@ -35,5 +35,13 @@ namespace LearningProject.Services
 
             _context.SaveChanges();
         }
+
+        public void RemovePublic(string url)
+        {
+           var delPub = _context.VkPublics.Single(p => p.Uri == url);
+
+            _context.VkPublics.Remove(delPub);
+            _context.SaveChanges();
+        }
     }
 }

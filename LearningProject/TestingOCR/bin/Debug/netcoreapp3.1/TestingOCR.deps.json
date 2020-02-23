@@ -9,6 +9,7 @@
       "TestingOCR/1.0.0": {
         "dependencies": {
           "IronOcr": "4.4.0",
+          "IronOcr.Languages.Russian": "4.4.4.1",
           "Microsoft.Windows.Compatibility": "3.1.0"
         },
         "runtime": {
@@ -20,6 +21,17 @@
           "lib/net40/IronOcr.dll": {
             "assemblyVersion": "4.4.0.21181",
             "fileVersion": "4.4.0.0"
+          }
+        }
+      },
+      "IronOcr.Languages.Russian/4.4.4.1": {
+        "dependencies": {
+          "IronOcr": "4.4.0"
+        },
+        "runtime": {
+          "lib/net40/IronOcr.Russian.dll": {
+            "assemblyVersion": "4.0.0.20748",
+            "fileVersion": "4.4.2.51"
           }
         }
       },
@@ -791,6 +803,13 @@
       "sha512": "sha512-tOZdFo40tnmsHIEnKa0jcEAcvBPpgSexob3dLJt1Yqrvk5VZCcXRO8xto/bXB1Lj+Rkjm5zxLycU8zgruxEnsg==",
       "path": "ironocr/4.4.0",
       "hashPath": "ironocr.4.4.0.nupkg.sha512"
+    },
+    "IronOcr.Languages.Russian/4.4.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bQDniDsTTki21LEmMhrK7drDl6qOCM40GxOSoRRwBb+20j7OfBrlQBVZ6OcTxd1PvgRK4LNJ/HFAzhz0LBim/A==",
+      "path": "ironocr.languages.russian/4.4.4.1",
+      "hashPath": "ironocr.languages.russian.4.4.4.1.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
