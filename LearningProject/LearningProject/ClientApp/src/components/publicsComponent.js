@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Api from '../Utils/Api';
 
+
 export class Publics extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +62,12 @@ export class Publics extends Component {
                         {this.state.publics.map((p) =>
                             <tr>
                                 <td>
-                                    <a href={p.uri} >{p.uri}</a>
+                                    <div>
+                                        <img src={p.photo50}></img>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href={p.url} target={"_blank"} >{p.name}</a>
                                 </td>
                                 <td>
                                     {p.postsParsed}

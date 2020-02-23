@@ -7,7 +7,31 @@ namespace LearningProject.Models
     {
         [Key] public int Id { get; set; }
 
-        public string Uri { get; set; }
+        public string Url { get; set; }
+
+        public string VkId { get; set; }
+
+        public string Name { get; set; }
+
+        public string ScreenName { get; set; }
+
+        public bool IsClosed { get; set; }
+
+        public string Type { get; set; }
+
+        public bool IsAdmin { get; set; }
+
+        public bool IsMember { get; set; }
+
+        public string IsAdvertiser { get; set; }
+
+        public string Descritption { get; set; }
+
+        public string Photo50 { get; set; }
+
+        public string Photo100 { get; set; }
+
+        public string Photo200 { get; set; }
 
         public ICollection<VkPost> Posts { get; set; }
     }
