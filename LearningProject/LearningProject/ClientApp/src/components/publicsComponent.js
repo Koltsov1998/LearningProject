@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
     inputContainer: {
@@ -20,6 +21,11 @@ const useStyles = makeStyles({
     },
     publicNameInput: {
         marginRight: 30,
+    },
+    loaderContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 
@@ -29,7 +35,8 @@ class Publics extends Component {
         this.state =
         {
             publics: [],
-            publicUrl: ''
+            publicUrl: '',
+            loading: true
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,7 +44,9 @@ class Publics extends Component {
     }
 
     async componentDidMount() {
-        this.populatePublics()  
+        this.populatePublics().then(() => {
+            this.setState({ loading: false })
+        })
     }
 
     handleChange(event) {
@@ -52,9 +61,9 @@ class Publics extends Component {
 
     async populatePublics() {
         var pubs = await Api.GetAllPublicsAsync();
-            this.setState({
-                publics: pubs
-            })
+        this.setState({
+            publics: pubs
+        })
     }
 
     handleRemove = publicUrl => () => {
@@ -72,57 +81,62 @@ class Publics extends Component {
                         Список пабликов
                     </div>
                     <div className={classes.inputContainer}>
-                        <TextField id="standard-basic" label="Ссылка на паблик" value={this.state.publicUrl} onChange={this.handleChange} className={classes.publicNameInput}/>
+                        <TextField id="standard-basic" label="Ссылка на паблик" value={this.state.publicUrl} onChange={this.handleChange} className={classes.publicNameInput} />
                         <Button onClick={this.handleSubmit}>
                             Добавить
                         </Button>
                     </div>
                 </div>
                 <div>
-                    <TableContainer component = {Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell></TableCell>
-                                    <TableCell>Название</TableCell>
-                                    <TableCell>Обработано мемов</TableCell>
-                                    <TableCell></TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {this.state.publics.map((p) =>
-                                <TableRow>
-                                    <TableCell>
-                                        <div>
-                                            <img src={p.photo50}></img>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <a href={p.url} target={"_blank"} >{p.name}</a>
-                                    </TableCell>
-                                    <TableCell>
-                                        {p.postsParsed}
-                                    </TableCell>
-                                    <TableCell>
-                                        <div>
-                                            <button onClick={this.handleRemove(p.uri)}>
-                                                Удалить
+                    {this.state.loading ?
+                        <div className={classes.loaderContainer}>
+                            <CircularProgress /></div> :
+                        <TableContainer component={Paper}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell></TableCell>
+                                        <TableCell>Название</TableCell>
+                                        <TableCell>Обработано мемов</TableCell>
+                                        <TableCell></TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.state.publics.map((p) =>
+                                        <TableRow>
+                                            <TableCell>
+                                                <div>
+                                                    <img src={p.photo50}></img>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <a href={p.url} target={"_blank"} >{p.name}</a>
+                                            </TableCell>
+                                            <TableCell>
+                                                {p.postsParsed}
+                                            </TableCell>
+                                            <TableCell>
+                                                <div>
+                                                    <button onClick={this.handleRemove(p.uri)}>
+                                                        Удалить
                                             </button>
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    }
+
                 </div>
             </div>
         );
     }
 }
 
-function WithStyles(Publics){
-    return function WrappedComponent(props){
+function WithStyles(Publics) {
+    return function WrappedComponent(props) {
         const classes = useStyles();
         return <Publics classes={classes} {...props}></Publics>
     }
