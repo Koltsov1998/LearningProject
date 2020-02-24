@@ -7,7 +7,7 @@ import { Counter } from './components/Counter';
 
 import './custom.css'
 import { GravitySimulation } from './components/GravitySimulation';
-import { Publics } from './components/publicsComponent';
+import Publics from './components/publicsComponent';
 
 export default class App extends Component {
   static displayName = App.name;

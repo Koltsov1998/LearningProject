@@ -11,7 +11,19 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
-export class Publics extends Component {
+const useStyles = makeStyles({
+    inputContainer: {
+        marginTop: 30,
+        marginBottom: 30,
+        display: 'flex',
+        alignItems: 'baseline'
+    },
+    publicNameInput: {
+        marginRight: 30,
+    }
+})
+
+class Publics extends Component {
     constructor(props) {
         super(props);
         this.state =
@@ -52,15 +64,15 @@ export class Publics extends Component {
     }
 
     render() {
-
+        const classes = this.props.classes
         return (
             <div>
                 <div>
                     <div>
                         Список пабликов
                     </div>
-                    <div>
-                        <TextField id="standard-basic" label="Ссылка на паблик" value={this.state.publicUrl} onChange={this.handleChange} />
+                    <div className={classes.inputContainer}>
+                        <TextField id="standard-basic" label="Ссылка на паблик" value={this.state.publicUrl} onChange={this.handleChange} className={classes.publicNameInput}/>
                         <Button onClick={this.handleSubmit}>
                             Добавить
                         </Button>
@@ -108,3 +120,12 @@ export class Publics extends Component {
         );
     }
 }
+
+function WithStyles(Publics){
+    return function WrappedComponent(props){
+        const classes = useStyles();
+        return <Publics classes={classes} {...props}></Publics>
+    }
+}
+
+export default WithStyles(Publics);
