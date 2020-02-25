@@ -7,7 +7,7 @@ namespace VkApiTest
         static void Main(string[] args)
         {
             ApiAccessProvider apiProvider = new ApiAccessProvider();
-            var groupInfos = apiProvider.GetGroupInfo("dank_memes_ayylmao").GetAwaiter().GetResult();
+            var groupInfos = apiProvider.GetPhotoAlbum(120254617).GetAwaiter().GetResult();
             ;
         }
     }

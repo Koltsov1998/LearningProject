@@ -38,10 +38,28 @@ namespace VkApi
             return groupInfo;
         }
 
+        public async Task<GetPhotosInfos> GetPhotoAlbum(int groupId)
+        {
+            var response = await _httpClient.GetAsync(
+                $"{BASE_URI}" +
+                $"photos.get?" +
+                $"&access_token={_accessToken}" +
+                $"&owner_id=-{groupId}" +
+                $"&album_id=wall" +
+                $"&v={API_VERSION}"
+            );
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            var photosInfo = JsonConvert.DeserializeObject<GetPhotosInfos>(responseBody);
+
+            return photosInfo;
+        }
+
         private const string BASE_URI = "https://api.vk.com/method/";
         private const string API_VERSION = "5.103";
     }
-    
+
     enum RequestTypes
     {
         GroupIdRequest,
