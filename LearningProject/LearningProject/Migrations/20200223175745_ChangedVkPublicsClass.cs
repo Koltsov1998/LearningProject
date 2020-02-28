@@ -73,7 +73,7 @@ namespace LearningProject.Migrations
                 table: "VkPublics",
                 nullable: true);
 
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.AddColumn<int>(
                 name: "VkId",
                 table: "VkPublics",
                 nullable: true);

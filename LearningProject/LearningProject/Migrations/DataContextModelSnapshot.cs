@@ -81,8 +81,8 @@ namespace LearningProject.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("text");
 
-                    b.Property<string>("VkId")
-                        .HasColumnType("text");
+                    b.Property<int>("VkId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

@@ -9,7 +9,10 @@ namespace LearningProject.Models
 
         public string Url { get; set; }
 
-        public string VkId { get; set; }
+        /// <summary>
+        /// groupid в базе данных вк
+        /// </summary>
+        public int VkId { get; set; }
 
         public string Name { get; set; }
 
