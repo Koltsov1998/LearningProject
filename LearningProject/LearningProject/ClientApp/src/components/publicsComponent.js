@@ -105,7 +105,7 @@ class Publics extends Component {
                                     </TableCell>
                                     <TableCell>
                                         <div>
-                                            <button onClick={this.handleRemove(p.uri)}>
+                                            <button onClick={this.handleRemove(p.url)}>
                                                 Удалить
                                             </button>
                                         </div>

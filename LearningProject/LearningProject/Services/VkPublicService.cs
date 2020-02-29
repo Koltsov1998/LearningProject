@@ -13,10 +13,12 @@ namespace LearningProject.Services
         private readonly ApiAccessProvider apiAccessProvider;
        
         private readonly DataContext _context;
+        private readonly IMemeService memeParser;
 
-        public VkPublicService(DataContext context)
+        public VkPublicService(DataContext context, IMemeService memeParser)
         {
             _context = context;
+            this.memeParser = memeParser;
             apiAccessProvider = new ApiAccessProvider();
         }
 
@@ -67,6 +69,8 @@ namespace LearningProject.Services
             });
 
             _context.SaveChanges();
+
+            memeParser.ParsePhotosFromPublic(groupInfo.Id).GetAwaiter().GetResult();
         }
 
         public void RemovePublic(string url)

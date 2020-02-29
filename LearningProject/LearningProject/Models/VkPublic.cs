@@ -36,6 +36,6 @@ namespace LearningProject.Models
 
         public string Photo200 { get; set; }
 
-        public ICollection<VkPost> Posts { get; set; }
+        public ICollection<ParsedMeme> Posts { get; set; }
     }
 }

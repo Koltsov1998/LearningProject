@@ -11,3 +11,11 @@ C:\MyFolder\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\T
 C:\MyFolder\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.AssemblyInfo.cs
 C:\MyFolder\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.dll
 C:\MyFolder\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.pdb
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\bin\Debug\netcoreapp3.1\TestingOCR.deps.json
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\bin\Debug\netcoreapp3.1\TestingOCR.dll
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\bin\Debug\netcoreapp3.1\TestingOCR.pdb
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.csprojAssemblyReference.cache
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.AssemblyInfoInputs.cache
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.AssemblyInfo.cs
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.dll
+C:\Users\Пользователь\LearningProject\LearningProject\TestingOCR\obj\Debug\netcoreapp3.1\TestingOCR.pdb
