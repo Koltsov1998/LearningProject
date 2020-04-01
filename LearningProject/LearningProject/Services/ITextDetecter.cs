@@ -7,6 +7,6 @@ namespace LearningProject.Services
 {
     public interface ITextDetecter
     {
-        string DetectText(string photoRef);
+        Task<string> DetectText(string photoRef);
     }
 }

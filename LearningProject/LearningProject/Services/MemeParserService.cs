@@ -1,69 +1,77 @@
 ﻿using LearningProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using VkApi;
+using VkApi.Messages;
 
 namespace LearningProject.Services
 {
-    public class MemeParserService:IMemeService
+    public class MemeParserService
     {
-        private readonly DataContext context;
-        private readonly ApiAccessProvider apiAccessProvider;
         private readonly ITextDetecter textDetecter;
+        private readonly ProgressProcessStorage progressProcessStorage;
+        private readonly ApiAccessProvider _apiAccessProvider;
+        private readonly IServiceProvider _serviceProvider;
 
-        public MemeParserService(DataContext context, ApiAccessProvider apiAccessProvider, ITextDetecter textDetecter)
+        public MemeParserService(ITextDetecter textDetecter,
+            ProgressProcessStorage progressProcessStorage,
+            ApiAccessProvider apiAccessProvider,
+            IServiceProvider serviceProvider)
         {
-            this.context = context;
-            this.apiAccessProvider = apiAccessProvider;
             this.textDetecter = textDetecter;
-
-            // ParsePhotos();
+            this.progressProcessStorage = progressProcessStorage;
+            _apiAccessProvider = apiAccessProvider;
+            _serviceProvider = serviceProvider;
         }
 
-        public async Task ParsePhotosFromPublic(int publicId)
+        public async Task<ImmutableArray<ParsedMeme>> ParsePhotos(GetPhotosInfos photos, int pubId)
         {
-            var photoAlbum = await apiAccessProvider.GetPhotoAlbum(publicId);
-            foreach (var item in photoAlbum.Response.Items)
+            List<ParsedMeme> result = new List<ParsedMeme>();
+
+            progressProcessStorage.Progresses.Add(pubId, new Progress(photos.Response.Items.Length));
+
+            foreach (var item in photos.Response.Items)
             {
                 var photo = item.Sizes.Single(s => s.Type == "x");
-                var text = textDetecter.DetectText(photo.Url);
+                var text = await textDetecter.DetectText(photo.Url);
                 ParsedMeme parsedMeme = new ParsedMeme
                 {
                     Url = photo.Url,
                     Text = text,
-                    VkPublic = p
+                    VkPublicId = pubId
                 };
+                result.Add(parsedMeme);
 
-                context.ParsedMemes.Add(parsedMeme);
+                progressProcessStorage.Progresses[pubId].Done += 1;
+                Console.WriteLine(
+                    $"Processing memes {progressProcessStorage.Progresses[pubId].Done} / {photos.Response.Count}");
             }
 
-            context.SaveChanges();
+
+            return result.ToImmutableArray();
         }
 
-        private async void ParsePhotos()
+        public void StartParsingPhotosFromPublic(int publicId)
         {
-            var publics = context.VkPublics;
-
-            foreach(var p in publics)
+            Task.Run(() =>
             {
-                var photoAlbum = await apiAccessProvider.GetPhotoAlbum(p.VkId);
-                foreach(var item in photoAlbum.Response.Items)
+                using (var scope = _serviceProvider.CreateScope())
                 {
-                    var photo = item.Sizes.Single(s => s.Type == "x");
-                    var text = textDetecter.DetectText(photo.Url);
-                    ParsedMeme parsedMeme = new ParsedMeme
-                    {
-                        Url = photo.Url,
-                        Text = text,
-                        VkPublic = p
-                    };
-                    
-                    context.ParsedMemes.Add(parsedMeme);
+                    var _memeParserDataService = scope.ServiceProvider.GetService<MemeParserDataService>();
+
+                    var pub = _memeParserDataService.GetVkPublicById(publicId);
+
+                    var photoAlbum = _apiAccessProvider.GetPhotoAlbum(pub.VkId).GetAwaiter().GetResult();
+
+                    var parsedMemes = ParsePhotos(photoAlbum, publicId).GetAwaiter().GetResult();
+
+                    _memeParserDataService.AddMemes(parsedMemes);
                 }
-                
-            }
+            });
         }
     }
 }

@@ -7,7 +7,7 @@ namespace LearningProject.Services
 {
     public class TextDetecter : ITextDetecter
     {
-        public string DetectText(string photoRef)
+        public Task<string> DetectText(string photoRef)
         {
             throw new NotImplementedException();
         }
