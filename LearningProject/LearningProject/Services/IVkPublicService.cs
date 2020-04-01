@@ -10,7 +10,7 @@ namespace LearningProject.Services
     {
         IEnumerable<VkPublicContract> GetAllVkPublics();
 
-        void RemovePublic(string url);
+        void RemovePublic(int id);
         void AddVkPublic(string url);
     }
 }

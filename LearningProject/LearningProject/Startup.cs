@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VkApi;
 
 namespace LearningProject
 {
@@ -38,6 +39,13 @@ namespace LearningProject
                 options.UseNpgsql(connectionString));
 
             services.AddScoped<IVkPublicService, VkPublicService>();
+            services.AddSingleton<ApiAccessProvider>();
+            //services.AddSingleton<ITextDetecter, TextDetecter>();
+            services.AddSingleton<ITextDetecter, TextDetecterForTests>();
+            services.AddScoped<MemeParserDataService>();
+            services.AddScoped<IMemeManagerService, MemeManagerService>();
+            services.AddScoped<MemeParserService>();
+            services.AddSingleton<ProgressProcessStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

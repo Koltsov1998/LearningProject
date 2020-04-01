@@ -6,7 +6,7 @@ namespace LearningProject.Models
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<VkPost> VkPosts { set; get; }
+        public DbSet<ParsedMeme> ParsedMemes { set; get; }
 
         public DbSet<VkPublic> VkPublics { set; get; }
     }

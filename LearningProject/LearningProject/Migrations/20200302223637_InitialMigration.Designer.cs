@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LearningProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200216191049_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200302223637_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,12 +20,15 @@ namespace LearningProject.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("LearningProject.Models.VkPost", b =>
+            modelBuilder.Entity("LearningProject.Models.ParsedMeme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Text")
+                        .HasColumnType("text");
 
                     b.Property<string>("Url")
                         .HasColumnType("text");
@@ -37,7 +40,7 @@ namespace LearningProject.Migrations
 
                     b.HasIndex("VkPublicId");
 
-                    b.ToTable("VkPosts");
+                    b.ToTable("ParsedMemes");
                 });
 
             modelBuilder.Entity("LearningProject.Models.VkPublic", b =>
@@ -47,15 +50,51 @@ namespace LearningProject.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Uri")
+                    b.Property<string>("Descritption")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("IsAdvertiser")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsClosed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsMember")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Photo100")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Photo200")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Photo50")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ScreenName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
+                    b.Property<int>("VkId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.ToTable("VkPublics");
                 });
 
-            modelBuilder.Entity("LearningProject.Models.VkPost", b =>
+            modelBuilder.Entity("LearningProject.Models.ParsedMeme", b =>
                 {
                     b.HasOne("LearningProject.Models.VkPublic", "VkPublic")
                         .WithMany("Posts")

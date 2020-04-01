@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningProject", "LearningProject\LearningProject.csproj", "{5849A570-5337-4B77-8022-7C3F20F457C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextRecognition", "TextRecognition\TextRecognition.csproj", "{21491019-7180-4B41-B562-65CD278AEC18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkApiTest", "VkApiTest\VkApiTest.csproj", "{0ADEDE69-11C5-409F-9063-6E3032266D1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingOCR", "TestingOCR\TestingOCR.csproj", "{D75F1E3F-2611-4D1C-B316-842C0192DA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkApi", "VkApi\VkApi.csproj", "{C9DF1468-1ECA-47C4-8471-972992F67532}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApiTest", "VkApiTest\VkApiTest.csproj", "{0ADEDE69-11C5-409F-9063-6E3032266D1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApi", "VkApi\VkApi.csproj", "{C9DF1468-1ECA-47C4-8471-972992F67532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{F61983EC-F86E-401D-96A5-FDA95DB35663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +21,6 @@ Global
 		{5849A570-5337-4B77-8022-7C3F20F457C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5849A570-5337-4B77-8022-7C3F20F457C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5849A570-5337-4B77-8022-7C3F20F457C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21491019-7180-4B41-B562-65CD278AEC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21491019-7180-4B41-B562-65CD278AEC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21491019-7180-4B41-B562-65CD278AEC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21491019-7180-4B41-B562-65CD278AEC18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D75F1E3F-2611-4D1C-B316-842C0192DA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D75F1E3F-2611-4D1C-B316-842C0192DA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D75F1E3F-2611-4D1C-B316-842C0192DA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D75F1E3F-2611-4D1C-B316-842C0192DA70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0ADEDE69-11C5-409F-9063-6E3032266D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0ADEDE69-11C5-409F-9063-6E3032266D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ADEDE69-11C5-409F-9063-6E3032266D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +29,10 @@ Global
 		{C9DF1468-1ECA-47C4-8471-972992F67532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DF1468-1ECA-47C4-8471-972992F67532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DF1468-1ECA-47C4-8471-972992F67532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61983EC-F86E-401D-96A5-FDA95DB35663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61983EC-F86E-401D-96A5-FDA95DB35663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61983EC-F86E-401D-96A5-FDA95DB35663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61983EC-F86E-401D-96A5-FDA95DB35663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

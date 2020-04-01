@@ -46,6 +46,8 @@ namespace VkApi
                 $"&access_token={_accessToken}" +
                 $"&owner_id=-{groupId}" +
                 $"&album_id=wall" +
+                $"&count=18" +
+                $"&rev=1" +
                 $"&v={API_VERSION}"
             );
 

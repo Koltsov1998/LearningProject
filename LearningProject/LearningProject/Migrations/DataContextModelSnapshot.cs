@@ -18,12 +18,15 @@ namespace LearningProject.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("LearningProject.Models.VkPost", b =>
+            modelBuilder.Entity("LearningProject.Models.ParsedMeme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Text")
+                        .HasColumnType("text");
 
                     b.Property<string>("Url")
                         .HasColumnType("text");
@@ -35,7 +38,7 @@ namespace LearningProject.Migrations
 
                     b.HasIndex("VkPublicId");
 
-                    b.ToTable("VkPosts");
+                    b.ToTable("ParsedMemes");
                 });
 
             modelBuilder.Entity("LearningProject.Models.VkPublic", b =>
@@ -89,7 +92,7 @@ namespace LearningProject.Migrations
                     b.ToTable("VkPublics");
                 });
 
-            modelBuilder.Entity("LearningProject.Models.VkPost", b =>
+            modelBuilder.Entity("LearningProject.Models.ParsedMeme", b =>
                 {
                     b.HasOne("LearningProject.Models.VkPublic", "VkPublic")
                         .WithMany("Posts")
