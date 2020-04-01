@@ -12,3 +12,7 @@ LearningProject/VkApi/obj
 LearningProject/TestingOCR/obj/project.assets.json
 LearningProject/TestingOCR/obj
 LearningProject/TextRecognition/obj
+LearningProject/TestingOCR
+LearningProject/TextRecognition
+LearningProject/Tests/bin
+LearningProject/Tests/obj
