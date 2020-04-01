@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
     inputContainer: {
@@ -18,9 +20,33 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'baseline'
     },
+    playButton: {
+        marginLeft: 10,
+        '&:hover': {
+            fill: '#46b3e6',
+            cursor: 'pointer',
+        }
+    },
     publicNameInput: {
         marginRight: 30,
+    },
+    progressContainer: {
+        width: 40,
+        height: 40,
+    },
+    circleAndPercents:{
+        position: "relative",
+    },
+    progressCircle: {
+        position: 'absolute'
+    },
+    percentsInsideCircle: {
+        position: 'absolute',
+        top: 15,
+        left: 5,
+        fontSize: 12,
     }
+
 })
 
 class Publics extends Component {
@@ -29,7 +55,8 @@ class Publics extends Component {
         this.state =
         {
             publics: [],
-            publicUrl: ''
+            publicUrl: '',
+            progress: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -57,9 +84,32 @@ class Publics extends Component {
             })
     }
 
-    handleRemove = publicUrl => () => {
-        Api.RemovePublic(publicUrl).then(
+    handleRemove = id => () => {
+        Api.RemovePublic(id).then(
             this.populatePublics()
+        )
+    }
+
+    handleStartProcessing = publicId => () => {
+        Api.StartPhotosParsing(publicId).then(
+            async () => {
+                var progress = await Api.GetProgress(publicId);
+                var percents = (progress.done/progress.total) *100;
+                var timerId = setInterval(async() => {
+                    progress = await Api.GetProgress(publicId);
+                    percents = Math.round((progress.done/progress.total) *100);
+                    this.setState(
+                        {
+                            progress: percents
+                        })
+
+                    if(percents == 100){
+                        clearInterval(timerId);
+                        this.populatePublics()
+                    }
+                    
+                }, 2000)
+            }
         )
     }
 
@@ -101,11 +151,28 @@ class Publics extends Component {
                                         <a href={p.url} target={"_blank"} >{p.name}</a>
                                     </TableCell>
                                     <TableCell>
-                                        {p.postsParsed}
+                                        <a href={`processedmemes?publicId=${p.id}`} target={"_blank"}>
+                                            {p.postsParsed}
+                                        </a>
+                                        </TableCell>
+                                        <TableCell>
+                                        {this.state.progress == 0?<PlayCircleOutlineIcon className = {classes.playButton} onClick={this.handleStartProcessing(p.id)}></PlayCircleOutlineIcon>:
+                                        <div className={classes.progressContainer}>
+                                            <div className={classes.circleAndPercents}>
+                                                <div className={classes.progressCircle}>
+                                                    <CircularProgress variant="static" value={this.state.progress} />
+                                                </div>
+                                                <div className={classes.percentsInsideCircle}>
+                                                    {this.state.progress}%
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                        
                                     </TableCell>
                                     <TableCell>
                                         <div>
-                                            <button onClick={this.handleRemove(p.url)}>
+                                            <button onClick={this.handleRemove(p.id)}>
                                                 Удалить
                                             </button>
                                         </div>
