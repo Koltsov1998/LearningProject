@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace VkApi.Messages
 {
-    public class GetPhotosInfos
+    public class PhotoAlbumInfo
     {
         [JsonProperty("response")]
         public Response Response { get; set; }

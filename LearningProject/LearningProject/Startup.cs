@@ -46,11 +46,15 @@ namespace LearningProject
             services.AddScoped<IMemeManagerService, MemeManagerService>();
             services.AddScoped<MemeParserService>();
             services.AddSingleton<ProgressProcessStorage>();
+            services.AddSingleton<AppSettings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var appSettings = app.ApplicationServices.GetService<AppSettings>();
+            appSettings.Init();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -38,7 +38,7 @@ namespace VkApi
             return groupInfo;
         }
 
-        public async Task<GetPhotosInfos> GetPhotoAlbum(int groupId)
+        public async Task<PhotoAlbumInfo> GetPhotoAlbum(int groupId, int picturesCount)
         {
             var response = await _httpClient.GetAsync(
                 $"{BASE_URI}" +
@@ -46,14 +46,14 @@ namespace VkApi
                 $"&access_token={_accessToken}" +
                 $"&owner_id=-{groupId}" +
                 $"&album_id=wall" +
-                $"&count=18" +
+                $"&count={picturesCount}" +
                 $"&rev=1" +
                 $"&v={API_VERSION}"
             );
 
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            var photosInfo = JsonConvert.DeserializeObject<GetPhotosInfos>(responseBody);
+            var photosInfo = JsonConvert.DeserializeObject<PhotoAlbumInfo>(responseBody);
 
             return photosInfo;
         }

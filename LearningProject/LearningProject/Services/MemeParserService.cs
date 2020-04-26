@@ -16,19 +16,22 @@ namespace LearningProject.Services
         private readonly ProgressProcessStorage progressProcessStorage;
         private readonly ApiAccessProvider _apiAccessProvider;
         private readonly IServiceProvider _serviceProvider;
+        private readonly AppSettings _appSettings;
 
         public MemeParserService(ITextDetecter textDetecter,
             ProgressProcessStorage progressProcessStorage,
             ApiAccessProvider apiAccessProvider,
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            AppSettings appSettings)
         {
             this.textDetecter = textDetecter;
             this.progressProcessStorage = progressProcessStorage;
             _apiAccessProvider = apiAccessProvider;
             _serviceProvider = serviceProvider;
+            _appSettings = appSettings;
         }
 
-        public async Task<ImmutableArray<ParsedMeme>> ParsePhotos(GetPhotosInfos photos, int pubId)
+        public async Task<ImmutableArray<ParsedMeme>> ParsePhotos(PhotoAlbumInfo photos, int pubId)
         {
             List<ParsedMeme> result = new List<ParsedMeme>();
 
@@ -57,7 +60,7 @@ namespace LearningProject.Services
 
         public void StartParsingPhotosFromPublic(int publicId)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 using (var scope = _serviceProvider.CreateScope())
                 {
@@ -65,9 +68,9 @@ namespace LearningProject.Services
 
                     var pub = _memeParserDataService.GetVkPublicById(publicId);
 
-                    var photoAlbum = _apiAccessProvider.GetPhotoAlbum(pub.VkId).GetAwaiter().GetResult();
+                    var photoAlbum = await _apiAccessProvider.GetPhotoAlbum(pub.VkId, _appSettings.ParsingDepth);
 
-                    var parsedMemes = ParsePhotos(photoAlbum, publicId).GetAwaiter().GetResult();
+                    var parsedMemes = await ParsePhotos(photoAlbum, publicId);
 
                     _memeParserDataService.AddMemes(parsedMemes);
                 }
