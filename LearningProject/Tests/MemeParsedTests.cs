@@ -1,16 +1,16 @@
-using System.Linq;
-using LearningProject.Services;
-using NUnit.Framework;
-using VkApi.Messages;
+//using System.Linq;
+//using LearningProject.Services;
+//using NUnit.Framework;
+//using VkApi.Messages;
 
-namespace Tests
-{
-    public class MemeParsedTests
-    {
-        [SetUp]
-        public void Setup()
-        {
-        }
+//namespace Tests
+//{
+//    public class MemeParsedTests
+//    {
+//        [SetUp]
+//        public void Setup()
+//        {
+//        }
 
         [Test]
         public async void Test1()
@@ -199,4 +199,5 @@ namespace Tests
             }
         };
     }
+}
 }

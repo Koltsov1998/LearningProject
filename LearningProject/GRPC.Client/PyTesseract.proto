@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+
+package PyTesseract;
+
+option csharp_namespace = "PyTesseract.Generated";
+
+service PyTesseract{
+    rpc ParseImage(ParseImageRequest) returns (ParseImageReply);
+}
+
+message ParseImageRequest{
+    string ImageUri = 1;
+}
+message ParseImageReply{
+    string Text = 1;
+}

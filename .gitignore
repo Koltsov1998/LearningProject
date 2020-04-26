@@ -16,3 +16,6 @@ LearningProject/TestingOCR
 LearningProject/TextRecognition
 LearningProject/Tests/bin
 LearningProject/Tests/obj
+LearningProject/GRPC.Client/bin
+LearningProject/GRPC.Client/obj
+LearningProject/GRPC.Server/venv

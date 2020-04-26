@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GRPC.Client\GRPC.Client.csproj" />
     <ProjectReference Include="..\VkApi\VkApi.csproj" />
   </ItemGroup>
 

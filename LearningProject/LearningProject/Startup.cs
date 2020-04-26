@@ -40,8 +40,8 @@ namespace LearningProject
 
             services.AddScoped<IVkPublicService, VkPublicService>();
             services.AddSingleton<ApiAccessProvider>();
-            //services.AddSingleton<ITextDetecter, TextDetecter>();
-            services.AddSingleton<ITextDetecter, TextDetecterForTests>();
+            services.AddSingleton<ITextDetecter, TextDetecter>();
+            //services.AddSingleton<ITextDetecter, TextDetecterForTests>();
             services.AddScoped<MemeParserDataService>();
             services.AddScoped<IMemeManagerService, MemeManagerService>();
             services.AddScoped<MemeParserService>();

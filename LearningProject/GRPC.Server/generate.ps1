@@ -1,0 +1,1 @@
+./venv/Scripts/python.exe -m grpc_tools.protoc -I../Protos --python_out=. --grpc_python_out=. ../Protos/PyTesseract.proto
